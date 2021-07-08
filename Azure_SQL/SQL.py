@@ -66,3 +66,19 @@ class AzureSQL:
         crsr.executemany(query,records)
         crsr.commit()
         logging.info('Record inserted')
+
+    def retrieve_rows(self):
+        '''
+        Description:
+            Method executes query for retrieving record in table in Azure database after connecting with database.
+        Parameters:
+            Object of class to get attribute connection.
+        Returns:
+            None.
+        '''
+        crsr=self.db.cursor()
+        query='SELECT * FROM employee'
+        rows=crsr.execute(query)
+        for row in rows:
+            logging.info(row)
+        logging.info('record retrieved')
