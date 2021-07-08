@@ -49,3 +49,20 @@ class AzureSQL:
         query=('CREATE TABLE employee(emp_id INT PRIMARY KEY,name VARCHAR(150) NOT NULL,department VARCHAR(150) not null)')
         crsr.execute(query)
         logging.info('Table created')
+
+    def insert_values(self):
+        '''
+        Description:
+            Method executes query for inserting record in table in Azure database after connecting with database.
+        Parameters:
+            Object of class to get attribute connection.
+        Returns:
+            None.
+        '''
+        crsr=self.db.cursor()
+        query=('CREATE TABLE employee(emp_id INT PRIMARY KEY,name VARCHAR(150) NOT NULL,department VARCHAR(150) not null)')
+        query='INSERT INTO employee(emp_id,name,department) VALUES (?,?,?)'
+        records=[(3,'Hardy','OR'),(4,'Sandra','HR')]
+        crsr.executemany(query,records)
+        crsr.commit()
+        logging.info('Record inserted')
