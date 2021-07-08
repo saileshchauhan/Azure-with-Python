@@ -99,3 +99,19 @@ class AzureSQL:
         #crsr.commit()
         crsr.execute(queryUpdate)
         crsr.commit()
+    
+    def delete_record(self):
+        '''
+        Description:
+            Method executes query for deleting record in table in Azure database after connecting with database.
+        Parameters:
+            Object of class to get attribute connection.
+        Returns:
+            None.
+        '''
+        crsr=self.db.cursor()
+        queryDelete='DELETE FROM dbo.employee WHERE emp_id=1'
+        crsr.execute(queryDelete)
+        crsr.commit()
+
+    
