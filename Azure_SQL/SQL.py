@@ -114,4 +114,22 @@ class AzureSQL:
         crsr.execute(queryDelete)
         crsr.commit()
 
-    
+def main():
+    '''
+    Description:
+        This is main method for executing method of class AzureSQL.
+    Parameters:
+        None.
+    Returns:
+        None.
+    '''
+    obj=AzureSQL()
+    obj.create_table()
+    obj.insert_values()
+    obj.update_record()
+    obj.delete_record()
+    obj.retrieve_rows()
+    obj.db.close()
+
+if __name__=='__main__':
+    main()
