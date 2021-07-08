@@ -35,3 +35,17 @@ class AzureSQL:
             TrustServerCertificate='no',
             Connection_Timeout=30
             )
+
+    def create_table(self):
+        '''
+        Description:
+            Method executes query for creating table in Azure database after connecting with database.
+        Parameters:
+            Object of class to get attribute connection.
+        Returns:
+            None.
+        '''
+        crsr=self.db.cursor()
+        query=('CREATE TABLE employee(emp_id INT PRIMARY KEY,name VARCHAR(150) NOT NULL,department VARCHAR(150) not null)')
+        crsr.execute(query)
+        logging.info('Table created')
