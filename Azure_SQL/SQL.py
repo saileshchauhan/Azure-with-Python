@@ -82,3 +82,20 @@ class AzureSQL:
         for row in rows:
             logging.info(row)
         logging.info('record retrieved')
+    
+    def update_record(self):
+        '''
+        Description:
+            Method executes query for updating record in table in Azure database after connecting with database.
+        Parameters:
+            Object of class to get attribute connection.
+        Returns:
+            None.
+        '''
+        crsr=self.db.cursor()
+        queryAlter='ALTER TABLE employee ADD gender VARCHAR(10) null'
+        queryUpdate=('UPDATE employee SET gender=M WHERE emp_id in (2)')
+        #crsr.execute(queryAlter)
+        #crsr.commit()
+        crsr.execute(queryUpdate)
+        crsr.commit()
