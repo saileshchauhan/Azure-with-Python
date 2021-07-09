@@ -16,3 +16,9 @@ connect_str = config('AZURE_STORAGE_CONNECTION_STRING')
 image_path='D:\\AzureWithPython\\Azure_Blob\\Blob_Data\\Azure-1.jpg'
 
 blob_service_client = BlobServiceClient.from_connection_string(connect_str)
+
+def create_container(container_name,blob_service_client):
+    id=str(uuid.uuid4())
+    container_name = container_name+id
+    container_client = blob_service_client.create_container(container_name)
+    return [container_client,container_name]
