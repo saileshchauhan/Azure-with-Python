@@ -48,3 +48,16 @@ def download_file(download_file_path,container_name):
 def delete_container(containerId):
     containerId.delete_container()
     logging.info('Deleted succesfully   '+str(containerId))
+
+def main():
+    try:
+        containerList=create_container('container1',blob_service_client)
+        upload_file(image_path,blob_service_client,containerList[1])
+        list_container(containerList[0])
+        download_file(download_file_path,containerList[1])
+        delete_container(containerList[0])
+    except Exception as ex:
+        logging.info(ex)
+
+if __name__=='__main__':
+    main()
