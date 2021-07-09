@@ -44,3 +44,7 @@ def download_file(download_file_path,container_name):
     blob_client = blob_service_client.get_blob_client(container=container_name, blob='Blob_1')
     with open(download_file_path, "wb") as download_file:
         download_file.write(blob_client.download_blob().readall())
+
+def delete_container(containerId):
+    containerId.delete_container()
+    logging.info('Deleted succesfully   '+str(containerId))
