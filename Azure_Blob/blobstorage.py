@@ -22,3 +22,11 @@ def create_container(container_name,blob_service_client):
     container_name = container_name+id
     container_client = blob_service_client.create_container(container_name)
     return [container_client,container_name]
+
+
+def upload_file(filePath,blob_service_client,container_name):
+    blob_client = blob_service_client.get_blob_client(container=container_name, blob='Blob_1')
+    with open(filePath, "rb") as data:
+        blob_client.upload_blob(data)
+    blob_client = blob_service_client.get_blob_client(container=container_name, blob='Blob_2')
+    blob_client.upload_blob(filePath)
