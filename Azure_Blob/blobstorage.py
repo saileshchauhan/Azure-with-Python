@@ -30,3 +30,9 @@ def upload_file(filePath,blob_service_client,container_name):
         blob_client.upload_blob(data)
     blob_client = blob_service_client.get_blob_client(container=container_name, blob='Blob_2')
     blob_client.upload_blob(filePath)
+
+def list_container(container_client):
+    logging.info("\nList Of Blobs in container")
+    blob_list = container_client.list_blobs()
+    for blob in blob_list:
+        logging.info("\t" + blob.name)
