@@ -36,3 +36,11 @@ def list_container(container_client):
     blob_list = container_client.list_blobs()
     for blob in blob_list:
         logging.info("\t" + blob.name)
+
+download_file_path='D:\\AzureWithPython\\Azure_Blob\\Blob_Data\\download.jpg'
+
+def download_file(download_file_path,container_name):
+    logging.info("\n Downloading Blobs from container")
+    blob_client = blob_service_client.get_blob_client(container=container_name, blob='Blob_1')
+    with open(download_file_path, "wb") as download_file:
+        download_file.write(blob_client.download_blob().readall())
