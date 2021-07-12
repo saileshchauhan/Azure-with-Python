@@ -9,8 +9,8 @@
 import pyodbc
 from decouple import config
 import sys
-sys.path.append('D:\AzureWithPython\logConfig.py')
-import logConfig
+sys.path.append('D:\\AzureWithPython\\logconfig.py')
+import logconfig
 import logging
 
 class AzureSQL:
@@ -22,7 +22,6 @@ class AzureSQL:
         4.insert_values()
         5.update_record()
         6.delete_record()
-
     '''
     def __init__(self):
         self.db=pyodbc.connect(
@@ -95,8 +94,8 @@ class AzureSQL:
         crsr=self.db.cursor()
         queryAlter='ALTER TABLE employee ADD gender VARCHAR(10) null'
         queryUpdate=('UPDATE employee SET gender=M WHERE emp_id in (2)')
-        #crsr.execute(queryAlter)
-        #crsr.commit()
+        crsr.execute(queryAlter)
+        crsr.commit()
         crsr.execute(queryUpdate)
         crsr.commit()
     
@@ -126,7 +125,7 @@ def main():
     obj=AzureSQL()
     obj.create_table()
     obj.insert_values()
-    obj.update_record()
+    #obj.update_record()
     obj.delete_record()
     obj.retrieve_rows()
     obj.db.close()
