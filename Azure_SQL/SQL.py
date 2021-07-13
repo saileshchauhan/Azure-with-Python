@@ -9,7 +9,7 @@
 import pyodbc
 from decouple import config
 import sys
-sys.path.append('D:\\AzureWithPython\\logconfig.py')
+sys.path.append('D:\AzureWithPython')
 import logconfig
 import logging
 

@@ -14,7 +14,14 @@ from datetime import datetime, timedelta
 import time
 
 def print_item(group):
-    """Print an Azure object instance."""
+    '''
+    Description:
+        Print method for printing  information.
+    Parameter:
+        group.
+    Return:
+        None
+    '''
     print("\tName: {}".format(group.name))
     print("\tId: {}".format(group.id))
     if hasattr(group, 'location'):
@@ -25,14 +32,28 @@ def print_item(group):
         print_properties(group.properties)
 
 def print_properties(props):
-    """Print a ResourceGroup properties instance."""
+    '''
+    Description:
+        Print method for printing  information.
+    Parameter:
+        props.
+    Return:
+        None
+    '''
     if props and hasattr(props, 'provisioning_state') and props.provisioning_state:
         print("\tProperties:")
         print("\t\tProvisioning State: {}".format(props.provisioning_state))
     print("\n\n")
 
 def print_activity_run_details(activity_run):
-    """Print activity run details."""
+    '''
+    Description:
+        Print method for printing  information.
+    Parameter:
+        activity_run.
+    Return:
+        None
+    '''
     print("\n\tActivity run details\n")
     print("\tActivity run status: {}".format(activity_run.status))
     if activity_run.status == 'Succeeded':
@@ -43,7 +64,14 @@ def print_activity_run_details(activity_run):
         print("\tErrors: {}".format(activity_run.error['message']))
 
 def main():
-
+    '''
+    Description:
+        Driver method for creating resource group, pipeline monitoring.
+    Parameter:
+        None.
+    Return:
+        None.
+    '''
     # Azure subscription ID
     subscription_id =config('subscription_ID')
 
@@ -82,7 +110,7 @@ def main():
     ls_name = 'storageLinkedService001'
 
     # IMPORTANT: specify the name and key of your Azure Storage account.
-    storage_string = SecureString(value='DefaultEndpointsProtocol=https;AccountName=stinputdata;AccountKey=bv3MrxN+KaE9KboTf0X43aj9xyZS070S1ue+VDxExmJIDEPJF0uF4GK/Xajpmdvb7VTtl5Nvdad1bmr3dP2z2Q==;EndpointSuffix=core.windows.net')
+    storage_string = SecureString(value=config('storage_account_key'))
 
     ls_azure_storage = LinkedServiceResource(properties=AzureStorageLinkedService(connection_string=storage_string)) 
     ls = adf_client.linked_services.create_or_update(rg_name, df_name, ls_name, ls_azure_storage)
